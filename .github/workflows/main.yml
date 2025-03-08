@@ -1,0 +1,17 @@
+name: test, build, deploy to kubernetes cluster
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run test for All Apps
+    run-on: ubuntu-latest
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v3
