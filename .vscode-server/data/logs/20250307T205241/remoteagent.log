@@ -1,0 +1,27 @@
+2025-03-07 20:52:41.832 [info] 
+
+
+
+
+2025-03-07 20:52:41.832 [info] Extension host agent started.
+2025-03-07 20:52:41.844 [info] Started initializing default profile extensions in extensions installation folder. file:///home/olamyde/.vscode-server/extensions
+2025-03-07 20:52:41.858 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/olamyde/.vscode-server/extensions
+2025-03-07 20:52:42.008 [info] [127.0.0.1][ca96f447][ManagementConnection] New connection established.
+2025-03-07 20:52:42.308 [info] [127.0.0.1][3cb49d20][ExtensionHostConnection] New connection established.
+2025-03-07 20:52:42.315 [info] [127.0.0.1][3cb49d20][ExtensionHostConnection] <616> Launched Extension Host Process.
+2025-03-07 20:53:40.295 [info] Getting Manifest... github.vscode-github-actions
+2025-03-07 20:53:40.428 [info] Installing extension: github.vscode-github-actions {"isMachineScoped":false,"installOnlyNewlyAddedFromExtensionPack":true,"isApplicationScoped":false,"profileLocation":{"$mid":1,"fsPath":"/home/olamyde/.vscode-server/extensions/extensions.json","external":"file:///home/olamyde/.vscode-server/extensions/extensions.json","path":"/home/olamyde/.vscode-server/extensions/extensions.json","scheme":"file"},"productVersion":{"version":"1.97.2","date":"2025-02-12T23:20:35.343Z"}}
+2025-03-07 20:53:43.094 [info] Extension signature verification result for github.vscode-github-actions: Success. Executed: true. Duration: 1679ms.
+2025-03-07 20:53:43.462 [info] Extracted extension to file:///home/olamyde/.vscode-server/extensions/github.vscode-github-actions-0.27.1: github.vscode-github-actions
+2025-03-07 20:53:43.496 [info] Renamed to /home/olamyde/.vscode-server/extensions/github.vscode-github-actions-0.27.1
+2025-03-07 20:53:43.515 [info] Extension installed successfully: github.vscode-github-actions file:///home/olamyde/.vscode-server/extensions/extensions.json
+2025-03-08 03:41:04.698 [info] [127.0.0.1][ca96f447][ManagementConnection] The client has reconnected.
+2025-03-08 03:41:04.846 [info] [127.0.0.1][3cb49d20][ExtensionHostConnection] The client has reconnected.
+2025-03-08 03:42:59.891 [info] [127.0.0.1][3cb49d20][ExtensionHostConnection] The client has reconnected.
+2025-03-08 03:42:59.971 [info] [127.0.0.1][ca96f447][ManagementConnection] The client has reconnected.
+2025-03-08 13:10:44.950 [info] [127.0.0.1][3cb49d20][ExtensionHostConnection] The client has reconnected.
+2025-03-08 13:10:45.192 [info] [127.0.0.1][ca96f447][ManagementConnection] The client has reconnected.
+2025-03-08 15:06:52.323 [info] [127.0.0.1][3cb49d20][ExtensionHostConnection] The client has reconnected.
+2025-03-08 15:06:52.774 [info] [127.0.0.1][ca96f447][ManagementConnection] The client has reconnected.
+2025-03-08 15:08:04.045 [info] [127.0.0.1][3cb49d20][ExtensionHostConnection] The client has reconnected.
+2025-03-08 15:08:04.138 [info] [127.0.0.1][ca96f447][ManagementConnection] The client has reconnected.
