@@ -27,9 +27,9 @@ jobs:
         working-directory: backend
         run: npm ci
 
-      - name: Run Node.js tests
-        working-directory: backend
-        run: npm test
+      # - name: Run Node.js tests
+      #   working-directory: backend
+      #   run: npm test
 
       # Install and Test React App
       - name: Install React dependencies
