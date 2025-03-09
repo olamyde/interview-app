@@ -61,15 +61,15 @@ jobs:
       - name: Build & Push Backend Image
         working-directory: backend
         run: |
-          docker build -t olamide/backend-app:latest .
-          docker push olamide/backend-app:latest
+          docker build -t olamyde/backend-app:latest .
+          docker push olamyde/backend-app:latest
 
       # Build and Push Frontend (React) Image
       - name: Build & Push Frontend Image
         working-directory: frontend
         run: |
-          docker build -t olamide/frontend-app:latest .
-          docker push olamide/frontend-app:latest
+          docker build -t olamyde/frontend-app:latest .
+          docker push olamyde/frontend-app:latest
 
   # Uncomment to Enable Kubernetes Deployment
   # deploy:
