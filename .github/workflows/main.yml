@@ -16,37 +16,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Node.js for Node.js app
-      - name: Set up Node.js for Node.js app
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
 
-      # Install dependencies for Node.js app
-      - name: Install Node.js app dependencies
+      # Install and Test Node.js App
+      - name: Install Node.js dependencies
         working-directory: backend
-        run: npm install
+        run: npm ci
 
-      # Run tests for Node.js app
-      - name: Run Node.js app tests
+      - name: Run Node.js tests
         working-directory: backend
         run: npm test
 
-      # Set up Node.js for React app
-      - name: Set up Node.js for React app
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'npm'
-
-      # Install dependencies for React app
-      - name: Install React app dependencies
+      # Install and Test React App
+      - name: Install React dependencies
         working-directory: frontend
-        run: npm install
+        run: npm ci
 
-      # Run tests for React app
-      - name: Run React app tests
+      - name: Run React tests
         working-directory: frontend
         run: npm test
 
@@ -67,20 +57,21 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      # Build and Push Node.js App
-      - name: Build & Push Node.js App
+      # Build and Push Backend (Node.js) Image
+      - name: Build & Push Backend Image
         working-directory: backend
         run: |
-          docker build -t olamyde/backend-app:latest .
-          docker push olamyde/backend-app:latest
+          docker build -t olamide/backend-app:latest .
+          docker push olamide/backend-app:latest
 
-      # Build and Push React.js App
-      - name: Build & Push React.js App
+      # Build and Push Frontend (React) Image
+      - name: Build & Push Frontend Image
         working-directory: frontend
         run: |
-          docker build -t olamyde/frontend-app:latest .
-          docker push olamyde/frontend-app:latest
+          docker build -t olamide/frontend-app:latest .
+          docker push olamide/frontend-app:latest
 
+  # Uncomment to Enable Kubernetes Deployment
   # deploy:
   #   name: Deploy to Kubernetes
   #   runs-on: ubuntu-latest
@@ -99,10 +90,8 @@ jobs:
   #         echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > kubeconfig
   #         export KUBECONFIG=kubeconfig
 
-  #     # Deploy Node.js App to Kubernetes
-  #     - name: Deploy Node.js App
+  #     - name: Deploy Backend App
   #       run: kubectl apply -f k8s/backend-deployment.yaml
 
-  #     # Deploy React.js App to Kubernetes
-  #     - name: Deploy React.js App
+  #     - name: Deploy Frontend App
   #       run: kubectl apply -f k8s/frontend-deployment.yaml
