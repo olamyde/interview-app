@@ -1,6 +1,6 @@
-name: test, build, deploy to kubernetes cluster
+name: Test, Build, and Deploy to Kubernetes Cluster
 
-on: 
+on:
   push:
     branches:
       - main
@@ -10,54 +10,53 @@ on:
 
 jobs:
   test:
-    name: Run test for All Apps
+    name: Run Tests for All Apps
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Set up Node.js for Node.js app
       - name: Set up Node.js for Node.js app
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
-        
 
       # Install dependencies for Node.js app
       - name: Install Node.js app dependencies
-        working-directory: ./backend
+        working-directory: backend
         run: npm install
 
       # Run tests for Node.js app
       - name: Run Node.js app tests
-        working-directory: ./backend
+        working-directory: backend
         run: npm test
 
-      # Set up Node.js environment for React app
+      # Set up Node.js for React app
       - name: Set up Node.js for React app
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
-        
 
       # Install dependencies for React app
       - name: Install React app dependencies
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm install
 
       # Run tests for React app
       - name: Run React app tests
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm test
 
-
-      
-  build: 
+  build:
     name: Build & Push Docker Images
     runs-on: ubuntu-latest
     needs: test
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -66,19 +65,44 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      # Build and Push Images for all apps
+      # Build and Push Node.js App
       - name: Build & Push Node.js App
         working-directory: backend
         run: |
           docker build -t olamyde/backend-app:latest .
           docker push olamyde/backend-app:latest
 
-      - name: Build & Push React.js App 1
+      # Build and Push React.js App
+      - name: Build & Push React.js App
         working-directory: frontend
         run: |
           docker build -t olamyde/frontend-app:latest .
           docker push olamyde/frontend-app:latest
 
+  # deploy:
+  #   name: Deploy to Kubernetes
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
+  #     - name: Set up kubectl
+  #       uses: azure/setup-kubectl@v3
+  #       with:
+  #         version: 'latest'
+
+  #     - name: Configure kubeconfig
+  #       run: |
+  #         echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > kubeconfig
+  #         export KUBECONFIG=kubeconfig
+
+  #     # Deploy Node.js App to Kubernetes
+  #     - name: Deploy Node.js App
+  #       run: kubectl apply -f k8s/backend-deployment.yaml
+
+  #     # Deploy React.js App to Kubernetes
+  #     - name: Deploy React.js App
+  #       run: kubectl apply -f k8s/frontend-deployment.yaml
